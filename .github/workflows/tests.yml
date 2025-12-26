@@ -17,4 +17,4 @@ jobs:
       # - name: Run zuban
       #   run: uv run --with zuban zuban check
       - name: Run tests
-        run: uv pytest
+        run: uv run pytest
