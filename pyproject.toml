@@ -1,0 +1,50 @@
+[project]
+name = "context-goodies"
+version = "0.1"
+description = ""
+authors = [{name = "Marcin Bachry", email = "hegel666@gmail.com"}]
+readme = "README.md"
+requires-python = ">=3.12"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+py-modules = ["context_goodies"]
+
+[project.optional-dependencies]
+dev = [
+  "gevent",
+  "pytest",
+  "pytest-cov",
+]
+
+[tool.pytest]
+addopts = ["-vv", "-W", "all", "--tb=short", "--log-level=DEBUG"]
+
+[tool.ruff]
+line-length = 120
+target-version = 'py312'
+
+[tool.ruff.lint]
+select = ['ALL']
+fixable = ['ALL']
+ignore = [
+  'ANN',
+  'D',
+  'ERA001',   # Found commented-out code
+  'Q000',     # Single quotes found but double quotes preferred
+  'S101',     # Use of `assert` detected
+  'PLW0603',  # use of "global"
+  'COM812',   # may conflict with ruff format
+]
+
+[tool.ruff.lint.per-file-ignores]
+"test_*.py" = ["ARG"]
+
+[tool.ruff.lint.flake8-unused-arguments]
+ignore-variadic-names = true
+
+[tool.ruff.format]
+quote-style = "preserve"

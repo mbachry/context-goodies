@@ -1,0 +1,6 @@
+.coverage
+.direnv/
+htmlcov/
+dist/
+*.egg-info/
+uv.lock
