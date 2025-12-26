@@ -18,6 +18,7 @@ dev = [
   "gevent",
   "pytest",
   "pytest-cov",
+  "types-gevent",
 ]
 
 [tool.pytest]

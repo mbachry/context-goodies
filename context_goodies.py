@@ -20,7 +20,7 @@ except ImportError:
 
 _request_id = contextvars.ContextVar[str | None]('request_id', default=None)
 _logging_data = contextvars.ContextVar[dict]('logging_data')
-_greenlet_group = contextvars.ContextVar('greenlet_group', default=None)
+_greenlet_group = contextvars.ContextVar[Any | None]('greenlet_group', default=None)
 
 
 def set_current_request_id(request_id: str | None) -> None:
@@ -100,7 +100,7 @@ def greenlet_startup_hook(new_greenlet: 'gevent.Greenlet') -> None:
     def run_with_context(*args, **kwargs):
         return ctx.run(original_run, *args, **kwargs)
 
-    new_greenlet.run = run_with_context
+    new_greenlet.run = run_with_context  # type: ignore[method-assign]
 
 
 if have_gevent:
