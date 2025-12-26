@@ -13,8 +13,8 @@ jobs:
           python-version: 3.13
       - uses: astral-sh/setup-uv@v6
       - name: Install Python dependencies
-        run: uv export --all-extras | python -m pip install -r /dev/stdin
-      - name: Install package
-        run: python -m pip install -e .
+        run: uv sync --extra dev
+      - name: Run zuban
+        run: uv run --with zuban zuban check
       - name: Run tests
-        run: pytest -vv --tb=short
+        run: uv pytest
